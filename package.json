@@ -1,0 +1,32 @@
+{
+  "name": "fibonacci_sequence",
+  "version": "1.0.0",
+  "description": "Fibonacci Sequence in assemblyscript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "asbuild:untouched": "asc assembly/index.ts -b build/untouched.wasm -t build/untouched.wat --sourceMap --validate --debug",
+    "asbuild:optimized": "asc assembly/index.ts -b build/optimized.wasm -t build/optimized.wat --sourceMap --validate --optimize",
+    "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Freddie-Pike/webassembly_fibonacci_sequence.git"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly"
+  ],
+  "author": "Freddie Pike",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Freddie-Pike/webassembly_fibonacci_sequence/issues"
+  },
+  "homepage": "https://github.com/Freddie-Pike/webassembly_fibonacci_sequence#readme",
+  "devDependencies": {
+    "assemblyscript": "github:AssemblyScript/assemblyscript"
+  },
+  "dependencies": {
+    "eslint": "^5.16.0"
+  }
+}
