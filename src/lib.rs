@@ -20,7 +20,16 @@ pub fn greet(message: &str) {
 }
 
 #[wasm_bindgen]
-pub fn fibo(n: usize) -> Option<usize> {
+pub fn fibo(n: usize) -> usize {
+  match n {
+        0 => 1,
+        1 => 1,
+        _ => fibo(n - 1) + fibo(n - 2),
+  }
+}
+
+#[wasm_bindgen]
+pub fn iterativeFibo(n: usize) -> Option<usize> {
   let mut x = vec![1, 1];
   for i in 2..n {
       let next_x = x[i - 1] + x[i - 2];
