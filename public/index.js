@@ -21,15 +21,25 @@ function fibo(n) {
   }
 }
 
+
 fetch("../target/wasm32-unknown-unknown/release/fibo.wasm")
   .then(response => response.arrayBuffer())
   .then(buffer => WebAssembly.instantiate(buffer))
   .then(module => {
     const rustFibo = module.instance.exports.rust_fibo;
 
-    let vanillaJSFiboValue = timer('vanillaJSFiboValue', rustFibo, 40);
-    let wasmRustFiboValue = timer('wasmRustFiboValue', rustFibo, 40);
+    fetch("../build/optimized.wasm")
+      .then(response => response.arrayBuffer())
+      .then(buffer => WebAssembly.instantiate(buffer))
+      .then(module => {
+        const typescriptFibo = module.instance.exports.typescript_fibo;
 
-    document.getElementById('vanilla-js-result').innerHTML = vanillaJSFiboValue;
-    document.getElementById('rust-result').innerHTML = wasmRustFiboValue;
+        let vanillaJSFiboValue = timer('vanillaJSFiboValue', fibo, 40);
+        let wasmRustFiboValue = timer('wasmRustFiboValue', rustFibo, 40);
+        let wasmTypescriptFiboValue = timer('wasmTypescriptFiboValue', typescriptFibo, 40);
+
+        document.getElementById('vanilla-js-result').innerHTML = vanillaJSFiboValue;
+        document.getElementById('rust-result').innerHTML = wasmRustFiboValue;
+        document.getElementById('typescript-result').innerHTML = wasmTypescriptFiboValue;
+      });
   });
