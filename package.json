@@ -1,0 +1,15 @@
+{
+  "name": "fibonacci_sequence",
+  "version": "1.0.0",
+  "description": "Fibonacci Sequence using webassembly",
+  "scripts": {
+    "rustBuild": "cargo build --target wasm32-unknown-unknown --release",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Freddie-Pike/webassembly_fibonacci_sequence.git"
+  },
+  "author": "Freddie Pike",
+  "license": "MIT"
+}
